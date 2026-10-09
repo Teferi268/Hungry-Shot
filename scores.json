@@ -1,0 +1,23 @@
+[
+    {
+        "pseudo": "mathieu",
+        "score": 16000,
+        "temps": 39,
+        "resultat": "victoire",
+        "date": "09/10/2026 14:58"
+    },
+    {
+        "pseudo": "timéo",
+        "score": 16000,
+        "temps": 44,
+        "resultat": "victoire",
+        "date": "09/10/2026 15:38"
+    },
+    {
+        "pseudo": "sssss",
+        "score": -1500,
+        "temps": 5,
+        "resultat": "defaite",
+        "date": "09/10/2026 16:03"
+    }
+]
