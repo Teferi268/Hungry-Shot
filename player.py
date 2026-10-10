@@ -22,9 +22,9 @@ class Player(pygame.sprite.Sprite):
         
     def move_up(self):
         # Deplacer le joueur vers le haut
-        self.rect.y -= 4
+        self.rect.y -= 8
         
     def move_down(self):
         # Deplacer le joueur vers le bas
-        self.rect.y += 4
+        self.rect.y += 8
 

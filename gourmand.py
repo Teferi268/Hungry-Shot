@@ -59,7 +59,7 @@ class Gourmand(pygame.sprite.Sprite):
         self.anger_bar_images = {}
         for level, image_path in self.anger_bars.items():
             image = pygame.image.load(str(image_path)).convert_alpha()
-            image = pygame.transform.scale(image, (500, 120))
+            image = pygame.transform.scale(image, (100, 33))
             self.anger_bar_images[level] = image
         self.anger_level = 0
         self.anger_bar_visible = False
@@ -118,7 +118,7 @@ class Gourmand(pygame.sprite.Sprite):
         level = str(min(self.anger_level, 3))
         image = self.anger_bar_images[level]
         x = self.rect.centerx - image.get_width() // 2
-        y = self.rect.top -60
+        y = self.rect.top - 38
         
         screen.blit(image, (x,y))
             

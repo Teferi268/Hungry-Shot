@@ -40,7 +40,6 @@ class Projectile(pygame.sprite.Sprite):
         # Faire apparaitre le projectile a la position du joueur
         if self.visible:
             return
-        self.swap
         self.rect.x = self.player.rect.x
         self.rect.y = self.player.rect.y
         self.visible = True
@@ -51,7 +50,7 @@ class Projectile(pygame.sprite.Sprite):
         # Faire avancer le projectile et le masquer apres trois secondes
         if self.visible:
             if self.direction == "right":
-                self.rect.x +=20
+                self.rect.x +=40
             elapsed_time = pygame.time.get_ticks() - self.start_time
             if elapsed_time > 3000:
                 self.visible = False
@@ -59,7 +58,7 @@ class Projectile(pygame.sprite.Sprite):
         # Passer a l'aliment suivant
         nom_image = self.projectiles[self.index]
         self.food = self.foods[self.index]
-        image_path = Path(__file__).resolve().parent / "assets" / nom_image
+        image_path = nom_image
         self.image = pygame.image.load(str(image_path))
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.mini_image = pygame.image.load(str(image_path))
@@ -81,4 +80,3 @@ class Projectile(pygame.sprite.Sprite):
         
         
     
-

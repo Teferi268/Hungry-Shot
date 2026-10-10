@@ -55,6 +55,8 @@ font = pygame.font.Font(None, 50)
 
 # Creer le projectile
 projectile = Projectile(player)
+mobs = pygame.sprite.Group()
+last_mob_spawn = pygame.time.get_ticks()
 
 score = 0
 text =  custom_font.render("0", True, (0, 0, 0))
@@ -101,7 +103,7 @@ def get_game_result():
         
 result = None
 # Initialiser le timer de la partie
-game_timer = 60
+game_timer = 100
 start_time = pygame.time.get_ticks()
 # Boucle principale du jeu
 while running:
@@ -117,6 +119,24 @@ while running:
     
     handle_keyboard()
     projectile.update_projectile()
+
+    # Faire traverser les mobs verticalement dans le couloir central.
+    if pygame.time.get_ticks() - last_mob_spawn > 1000 and len(mobs) < 3:
+        mob = Mobs()
+        mob.mob_apparition()
+        mobs.add(mob)
+        last_mob_spawn = pygame.time.get_ticks()
+    mobs.update()
+
+    # Un mob touche par un projectile est casse.
+    if projectile.visible:
+        touched_mobs = pygame.sprite.spritecollide(projectile, mobs, dokill=True)
+        if touched_mobs:
+            projectile.visible = False
+            projectile.rect.x = -100
+            projectile.rect.y = -100
+            score += 100
+            text = custom_font.render(str(score), False, (0, 0, 0))
     elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
     remaining_time = max(0, game_timer - elapsed_time)
     if remaining_time == 0:
@@ -172,6 +192,7 @@ while running:
     # Afficher les gourmands
     for eater in eaters:
         screen.blit(eater.image, eater.rect)
+    mobs.draw(screen)
     # Afficher les pancartes
     for eater in eaters:
         eater.draw_sign(screen)
